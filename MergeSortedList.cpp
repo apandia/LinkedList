@@ -2,8 +2,6 @@
 
 using namespace std;
 
-//Linked list insert: tail, head and specifc position
-
 class SingleLinkedListNode {
 public:
 	int data;
