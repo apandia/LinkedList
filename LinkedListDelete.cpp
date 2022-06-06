@@ -42,7 +42,7 @@ void insertNodeAtTail(SingleLinkedListNode** head, int data)
 	temp->next = newNode;
 }
 
-//Insert new node at tail
+//Delete node at tail
 void deleteNodeAtTail(SingleLinkedListNode** head)
 {
 	if ((*head) == nullptr)
@@ -65,7 +65,7 @@ void deleteNodeAtTail(SingleLinkedListNode** head)
 	temp = nullptr;
 }
 
-//Insert new node at start
+//Delete node at start
 void deleteNodeAtStart(SingleLinkedListNode** head)
 {
 	if ((*head) == nullptr)
@@ -80,6 +80,7 @@ void deleteNodeAtStart(SingleLinkedListNode** head)
 	temp = nullptr;
 }
 
+//Delete node at given position
 void deleteNodeAtPosition(SingleLinkedListNode** head, int position)
 {
 	if (*head == nullptr)
