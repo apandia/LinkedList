@@ -67,14 +67,42 @@ SingleLinkedListNode* deleteMiddle(SingleLinkedListNode* head)
 
     SingleLinkedListNode* tmp = middleNode->next;
 
-    middleNode->data = tmp->data;
-    middleNode->next = tmp->next;
+    if(tmp)
+    {
+        middleNode->data = tmp->data;
+        middleNode->next = tmp->next;
 
-    delete tmp;
-    tmp = nullptr;
+        delete tmp;
+        tmp = nullptr;
+    }
+    else if(head->next == middleNode)
+    {
+        head->next = nullptr;
+
+        delete middleNode;
+        middleNode = nullptr;
+    } else{
+        return nullptr;
+    }
 
     return head;
 }
+
+//Below function has nearly same memory usage but faster runtime
+SingleLinkedListNode* deleteMiddleNode(SingleLinkedListNode* head) {
+    SingleLinkedListNode tmp(0, head);
+    SingleLinkedListNode* slow = &tmp;
+    SingleLinkedListNode* fast = &tmp;
+
+    while (fast->next && fast->next->next) {
+      slow = slow->next;
+      fast = fast->next->next;
+    }
+
+    // delete the middle node
+    slow->next = slow->next->next;
+    return tmp.next;
+  }
 
 //Driver function
 int main()
@@ -91,7 +119,8 @@ int main()
     cout << "\nLinked List: ";
     printLinkedList(head);
 
-    SingleLinkedListNode* newHead = deleteMiddle(head);
+    //SingleLinkedListNode* newHead = deleteMiddle(head);
+    SingleLinkedListNode* newHead = deleteMiddleNode(head);
     cout << "\nNew Linked List After Deleting Middle: ";
     printLinkedList(newHead);
 
