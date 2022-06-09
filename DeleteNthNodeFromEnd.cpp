@@ -46,19 +46,19 @@ void printLinkedList(SingleLinkedListNode* head)
 
 SingleLinkedListNode* deleteNthNodeFromEnd(SingleLinkedListNode* head, int n)
 {
-    SingleLinkedListNode* fast = head;
-    SingleLinkedListNode* slow = head;
+    SingleLinkedListNode start(0, head);
+
+    SingleLinkedListNode* fast = &start;
+    SingleLinkedListNode* slow = &start;
 
     for(int i = 0; i < n; i++)
     {
+        //For cases where n is greater than size of linked list
         if (fast->next == nullptr) {
             return nullptr;
         }
         fast = fast->next;
     }
-
-    if(fast == nullptr)
-        return nullptr;
 
     while(fast && fast->next)
     {
@@ -68,7 +68,7 @@ SingleLinkedListNode* deleteNthNodeFromEnd(SingleLinkedListNode* head, int n)
 
     slow->next = slow->next->next;
 
-    return head;
+    return start.next;
 }
 
 //Driver function
