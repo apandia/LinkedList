@@ -25,7 +25,7 @@ Output Linked List: 1->2->3->2
 Output: False
 */
 
-//TC: O(N/2) + O(N/2) + O(N/2)
+//TC: O(N/2) + O(N/2) + O(N/2) ~ O(N)
 //              O(N/2): Finding middle element
 //              O(N/2): Reverse right half of linked list
 //              O(N/2): Comparing left and right half
@@ -60,8 +60,10 @@ bool checkPallindrome(SingleLinkedListNode* list)
         fast = fast->next->next;
     }
 
-    slow->next = reverseLinkedList(slow->next);
-    slow = slow->next;
+    if(fast != nullptr)
+        slow = slow->next;
+
+    slow = reverseLinkedList(slow);
 
     while(slow)
     {
